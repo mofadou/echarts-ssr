@@ -43,8 +43,9 @@ const server = http.createServer(function (req, res) {
             renderError(res, 'Missing "option"');
             return;
         }
-
-        const canvas = createCanvas(400, 400);
+        let width = payload.width?payload.width:400
+        let height = payload.height?payload.height:400
+        const canvas = createCanvas(width, height);
         const chart = echarts.init(canvas);
         chart.setOption(payload.option);
         const png = chart.getDom().toBuffer('image/png');
